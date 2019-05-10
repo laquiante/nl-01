@@ -1,0 +1,61 @@
+# /etc/network/interfaces template for switches (leaf01)
+# Created by Ansible
+
+# Loopback interface
+auto lo
+iface lo inet loopback
+  address 10.0.0.11/32
+  alias loopback interface
+
+# Management interface
+
+ auto eth0
+ iface eth0 inet dhcp
+    vrf mgmt
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+# Port to Server01
+auto swp1
+iface swp1
+  alias to Server01
+  bridge-access 10
+  mtu 9000
+  # This is required for Vagrant only
+  post-up ip link set swp1 promisc on
+
+# Port to Spine01
+auto swp51
+iface swp51
+  mtu 9216
+  alias to Spine01
+
+# Define the bridge for STP
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  bridge-ports swp1 vni10
+  bridge-vids 10
+  bridge-pvid 1
+
+# VxLAN Tunnel for Server1-Server2 (Vlan 10)
+auto vni10
+iface vni10
+  mtu 9000
+  vxlan-id 10
+  vxlan-local-tunnelip 10.0.0.11
+  bridge-access 10
+  bridge-learning off
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+
+auto vlan10
+iface vlan10
+    address 10.1.0.11/24
+    address-virtual 44:39:39:ff:00:10 10.1.0.1/24
+    vlan-id 10
+    vlan-raw-device bridge
+

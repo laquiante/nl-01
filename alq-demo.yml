@@ -1,0 +1,14 @@
+---
+- hosts: smallnet
+  become: yes
+  roles:
+    - interface_configuration
+    - routing_configuration
+
+- hosts: smallcompute
+  user: cumulus
+  become: yes
+  become_method: sudo
+  roles:
+    - server_interface_configuration
+#    

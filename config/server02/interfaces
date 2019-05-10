@@ -1,0 +1,17 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+  address 192.168.0.32
+  netmask 255.255.255.0 
+
+auto eth2
+iface eth2 inet static
+  address 10.1.0.102
+  netmask 255.255.255.0
+  mtu 9000
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth1
+  post-up ip route add default via 10.1.0.1
+

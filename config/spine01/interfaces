@@ -1,0 +1,29 @@
+# Loopback interface
+auto lo
+iface lo inet loopback
+  address 10.0.0.1/32
+  alias loopback interface
+
+# Management interface
+auto eth0
+iface eth0 inet dhcp
+    alias management interface
+    vrf mgmt
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+# Port to Leaf01
+auto swp1
+iface swp1
+  mtu 9216
+  alias to Leaf01
+
+# Port to Leaf02
+auto swp2
+iface swp2
+  mtu 9216
+  alias to Leaf02
+
