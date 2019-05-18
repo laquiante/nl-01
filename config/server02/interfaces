@@ -7,20 +7,11 @@ iface eth0 inet static
   netmask 255.255.255.0 
   post-up ip link set promic on dev eth1
 
-auto eth2.10
-iface eth2.10 inet static
+auto eth2
+iface eth2 inet static
   address 10.1.10.102
   netmask 255.255.255.0
   # Required for Vagrant
-  # post-up ip link set promic on dev eth1
-  # post-up ip route add default via 10.1.10.1
+  post-up ip link set promic on dev eth1
+  post-up ip route add default via 10.1.10.1
 
-auto eth2.11
-iface eth2.11 inet static
-  address 10.1.11.102
-  netmask 255.255.255.0
-
-auto eth2.12
-iface eth2.12 inet static
-  address 10.1.12.102
-  netmask 255.255.255.0

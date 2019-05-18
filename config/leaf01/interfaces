@@ -18,20 +18,11 @@ iface mgmt
     address 127.0.0.1/8
     vrf-table auto
 
-auto securitylevel10
-iface securitylevel10
-    address 127.0.0.1/8
-    vrf-table auto
-
-auto securitylevel100
-iface securitylevel100
-    address 127.0.0.1/8
-    vrf-table auto
-
 # Port to Server01
 auto swp1
 iface swp1
   alias to Server01
+  bridge-access 10
   mtu 9000
   # This is required for Vagrant only
   post-up ip link set swp1 promisc on
@@ -46,8 +37,8 @@ iface swp51
 auto bridge
 iface bridge
   bridge-vlan-aware yes
-  bridge-ports swp1 vni-10010, vni-10011, vni-10012
-  bridge-vids 10,11,12,20,21,22
+  bridge-ports swp1 vni-10010
+  bridge-vids 10
   bridge-pvid 1
 
 # VxLAN Tunnel for Server1-Server2 (Vlan 10)
@@ -60,44 +51,11 @@ iface vni-10010
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
 
-auto vni-10011
-iface vni-10011
-  vxlan-id 10011
-  vxlan-local-tunnelip 10.0.0.11
-  bridge-access 11
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
-
-auto vni-10012
-iface vni-10012
-  vxlan-id 10012
-  vxlan-local-tunnelip 10.0.0.11
-  bridge-access 12
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
-
 auto vlan10
 iface vlan10
     address 10.1.10.11/24
     address-virtual 44:39:39:ff:00:10 10.1.10.1/24
     vlan-id 10
     vlan-raw-device bridge
-#    vrf sicherheitslevel10
 
-auto vlan11
-iface vlan11
-    address 10.1.11.11/24
-    address-virtual 44:39:39:ff:00:11 10.1.11.1/24
-    vlan-id 11
-    vlan-raw-device bridge
-#    vrf sicherheitslevel10
 
-auto vlan12
-iface vlan12
-    address 10.1.12.11/24
-    address-virtual 44:39:39:ff:00:12 10.1.12.1/24
-    vlan-id 12
-    vlan-raw-device bridge
-#    vrf sicherheitslevel10
