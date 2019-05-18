@@ -11,11 +11,24 @@ iface eth0 inet static
 
 auto eth1
 iface eth1 inet static
-  address 10.1.0.101
+  address 10.0.0.101
   netmask 255.255.255.0
-  mtu 9000
-  # Required for Vagrant
   post-up ip link set promisc on dev eth1
-  post-up ip route add default via 10.1.0.1
 
+auto eth1.10
+iface eth1.10 inet static
+  address 10.1.10.101
+  netmask 255.255.255.0
+  # Required for Vagrant
+  # post-up ip link set promics on dev eth1
+  # post-up ip route add default via 10.1.10.1
 
+auto eth1.11
+iface eth1.11 inet static
+  address 10.1.11.101
+  netmask 255.255.255.0
+
+auto eth1.12
+iface eth1.12 inet static
+  address 10.1.12.101
+  netmask 255.255.255.0
