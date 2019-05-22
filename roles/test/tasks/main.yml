@@ -1,0 +1,26 @@
+---
+  - name: copy netlink manager
+    copy: src=/home/cumulus/web-test/python-nlmanager/ dest=/home/cumulus
+
+  - name: aendern des Benutzers
+    file:
+      path: /home/cumulus/
+      owner: cumulus
+      group: cumulus
+      mode: '0777'
+
+  - name: und noch mal ein versuch
+    file: dest=/home/cumulus owner=cumulus group=cumulus mode=0777 recurse=yes
+
+#  - name: verzeichnis 
+#    shell: "cd"
+#
+#  - name: dir
+#    shell: "ls -al"
+
+  - name: inst
+#    shell: "/home/cumulus python setup.py install"
+    command: "python setup.py install"
+    args:
+      chdir: /home/cumulus
+#    delegate_to: 127.0.0.1

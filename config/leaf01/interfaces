@@ -27,6 +27,17 @@ iface swp1
   # This is required for Vagrant only
   post-up ip link set swp1 promisc on
 
+# Port to test VRF
+auto swp2
+iface swp2
+  ip add 10.1.10.1/24
+  vrf TEST
+
+auto TEST
+iface TEST
+  address 127.0.0.1/8
+  vrf-table auto
+
 # Port to Spine01
 auto swp51
 iface swp51
