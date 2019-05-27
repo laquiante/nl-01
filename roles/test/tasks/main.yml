@@ -8,6 +8,6 @@
       chdir: /home/cumulus
 
   - name: copy python alq-01.py
-    copy: src=/home/cumulus/python/alq-01.py dest=/home/cumulus
+    copy: src=/home/cumulus/ansible-01/python/alq-01.py dest=/home/cumulus
 
 
