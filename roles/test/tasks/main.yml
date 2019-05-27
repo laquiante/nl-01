@@ -6,3 +6,8 @@
     command: "python setup.py install"
     args:
       chdir: /home/cumulus
+
+  - name: copy python alq-01.py
+    copy: src=/home/cumulus/python/alq-01.py dest=/home/cumulus
+
+
