@@ -11,5 +11,9 @@ log = logging.getLogger()
 
 nlmanager = NetlinkManager()
 
-
+try:
+    nl_if = nlmanager.get_iface_name(1)
+    print nl_if[0:3]
+except:
+    print "nack"
 
