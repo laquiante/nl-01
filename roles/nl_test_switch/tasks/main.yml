@@ -1,0 +1,13 @@
+---
+  - name: copy netlink manager
+    copy: src=/home/cumulus/python-nlmanager/ dest=/home/cumulus
+
+  - name: inst
+    command: "python setup.py install"
+    args:
+      chdir: /home/cumulus
+
+  - name: copy python alq-01.py
+    copy: src=/home/cumulus/ansible-01/python/alq-01.py dest=/home/cumulus
+
+

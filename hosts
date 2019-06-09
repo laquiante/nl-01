@@ -1,45 +1,10 @@
 ---
 
-[smallnet]
-spine01
+[nl_test_switch]
 leaf01
-leaf02
 
-[leaf]
-leaf01
-leaf02
-leaf03
-leaf04
-
-[spine]
-spine01
-spine02
-
-[exit]
-exit01
-exit02
-
-[internetrouter]
-internet 
-
-[oob]
-oob-mgmt-server
-
-[servers]
+[nl_test_server]
 server01
-server02
-server03
-server04
-
-[smallcompute]
-server01
-server02
-
-[network:children]
-leaf
-spine
-exit
-internetrouter
 
 [all:vars]
 ansible_user=cumulus

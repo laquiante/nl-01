@@ -1,19 +1,17 @@
+#
+# netlink, alq 09-JUN-2019
+#
+
 ---
-- hosts: smallnet
+- hosts: nl_test_switch
   become: yes
   roles:
-    - interface_configuration
-    - routing_configuration
+    - nl_test_switch
 
-- hosts: leaf01
-  become: yes
-  roles:
-    - test
+#- hosts: nl_test_server
+#  user: cumulus
+#  become: yes
+#  become_method: sudo
+#  roles:
+#    - nl_test_server
 
-- hosts: smallcompute
-  user: cumulus
-  become: yes
-  become_method: sudo
-  roles:
-    - server_interface_configuration
-#    
